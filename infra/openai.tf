@@ -1,13 +1,13 @@
-resource "random_integer" "this" {
-  max = 999999
-  min = 100000
+module "naming" {
+  source  = "Azure/naming/azurerm"
+  version = ">= 0.3.0"
 }
 
 module "openai" {
   source              = "Azure/avm-res-cognitiveservices-account/azurerm"
   version             = "0.4.0"
   kind                = "OpenAI"
-  name                = "azure-openai-${random_integer.this.result}"
+  name                = "azure-openai-${module.naming.cognitive_account.name_unique}"
   resource_group_name = azurerm_resource_group.this.name
   sku_name            = "S0"
   location            = azurerm_resource_group.this.location
@@ -33,10 +33,10 @@ module "openai" {
       }
     },
     "embedding_model" = {
-      name          = var.emb_model_name
+      name          = var.embedding_model_name
       model = {
         format  = "OpenAI"
-        name    = var.emb_model_name
+        name    = var.embedding_model_name
         version = "2"
       }
       scale = {
