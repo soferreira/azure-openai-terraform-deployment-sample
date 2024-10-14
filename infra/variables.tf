@@ -13,6 +13,12 @@ variable "chat_model_version" {
   default = "2024-08-06"
 }
 
+variable "chat_scale_type" {
+  type    = string
+  description = "values: GlobalStandard, Standard"
+  default = "GlobalStandard"
+}
+
 variable "embedding_model_name" {
   type    = string
   default = "text-embedding-ada-002"
@@ -23,8 +29,8 @@ variable "embedding_model_version" {
   default = "2"
 }
 
-variable "scale_type" {
+variable "embedding_scale_type" {
   type    = string
   description = "values: GlobalStandard, Standard"
-  default = "GlobalStandard"
+  default = "Standard"
 }

@@ -29,7 +29,7 @@ module "openai" {
       }
       scale = {
         capacity = 120
-        type     = var.scale_type
+        type     = var.chat_scale_type
       }
     },
     "embedding_model" = {
@@ -41,7 +41,7 @@ module "openai" {
       }
       scale = {
         capacity = 120
-        type     = var.scale_type
+        type     = var.embedding_scale_type
       }
     },
   }
